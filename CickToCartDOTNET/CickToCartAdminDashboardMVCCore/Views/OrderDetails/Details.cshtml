@@ -1,0 +1,184 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<OrderDetailsViewModels>
+@{
+    ViewData["Title"] = "All Users";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="content mt-2">    
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-5 d-flex align-items-center justify-content-between">
+                            <span>Order No : <a href="#">#@ViewBag.Order.ID</a></span>
+                            <span class="badge bg-success">@ViewBag.OrderStatus.Status.Name</span>
+                        </div>
+                        <div class="row mb-5 g-4">
+                            <div class="col-md-3 col-sm-6">
+                                <p class="fw-bold">Order Created at</p>
+                                @ViewBag.Order.CreatedAT
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <p class="fw-bold">Name</p>
+                                @ViewBag.User.FirstName @ViewBag.User.LastName
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <p class="fw-bold">Email</p>
+                                @ViewBag.User.Email
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <p class="fw-bold">Contact No</p>
+                                @ViewBag.User.PhoneNumber
+                          </div>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-body d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="mb-0">Delivery Address</h5>
+                                            <a href="#">Edit</a>
+                                        </div>
+                                        <div>Name: Home</div>
+                                        @*<div>Josephin Villa</div>*@
+                                        <div>@ViewBag.User.Address</div>
+                                        <div>
+                                            <i class="bi bi-telephone me-2"></i> @ViewBag.User.PhoneNumber
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+@*                            <div class="col-md-6 col-sm-12">
+                                <div class="card">
+                                    <div class="card-body d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="mb-0">Billing Address</h5>
+                                            <a href="#">Edit</a>
+                                        </div>
+                                        <div>Name: Workplace</div>
+                                        <div>Josephin Villa</div>
+                                        <div>29543 South Plaza, Canada/Sydney Mines</div>
+                                        <div>
+                                            <i class="bi bi-telephone me-2"></i> 484-948-8535
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h6 class="card-title mb-4">Price</h6>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-4 text-end">Sub Total :</div>
+                            <div class="col-4">$@ViewBag.Order.TotalPrice</div>
+                        </div>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-4 text-end">Shipping :</div>
+                            <div class="col-4">Free</div>
+                        </div>
+@*                        <div class="row justify-content-center mb-3">
+                            <div class="col-4 text-end">Tax(18%) :</div>
+                            <div class="col-4">$273,77</div>
+                        </div>*@
+                        <div class="row justify-content-center">
+                            <div class="col-4 text-end">
+                                <strong>Total :</strong>
+                            </div>
+                            <div class="col-4">
+                                <strong>$@ViewBag.Order.TotalPrice</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title mb-4">Invoice</h6>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-6 text-end">Invoice No :</div>
+                            <div class="col-6">
+                                <a href="#">#@ViewBag.Order.ID</a>
+                            </div>
+                        </div>
+@*                        <div class="row justify-content-center mb-3">
+                            <div class="col-6 text-end">Seller GST :</div>
+                            <div class="col-6">12HY87072641Z0</div>
+                        </div>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-6 text-end">Purchase GST :</div>
+                            <div class="col-6">22HG9838964Z1</div>
+                        </div>*@
+                        <div class="text-center mt-4">
+                            <button onClick="window.print()" class="btn btn-outline-primary">Print Invoice</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="card widget">
+                    <div class="card-body">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between">
+                                <span>
+                                    <i class="fas fa-table me-1"></i>
+                                    Order Items
+                                </span>
+
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ProductID</th>
+            @*                                    <th>Product Photo</th>
+            *@                                    <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product ID</th>
+            @*                                    <th>Product Photo</th>
+            *@                                    <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            counter += 1;
+                                            <tr>
+                                                <td>@counter</td>
+                                                <td>@item.ProductID</td>
+                                                @*<td>
+                                                    <a href="#">
+                                                        <img src="../../assets/images/products/3.jpg" class="rounded" width="60" alt="...">
+                                                    </a>
+                                                </td>*@
+                                                <td>@item.Product.Name</td>
+                                                <td>$@item.Price</td>
+                                                <td>@item.Quantity</td>
+                                                <td>$(@item.Quantity*@item.Price)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        </div>

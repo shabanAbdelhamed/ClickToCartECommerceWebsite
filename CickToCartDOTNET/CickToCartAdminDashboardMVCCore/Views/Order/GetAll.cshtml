@@ -1,0 +1,68 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<OrderViewModels>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            All Orders
+        </span>
+       
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>OrderNumber</th>
+                    <th>User</th>
+                    <th>Total</th>
+                  @*  <th>OrderStatus</th>*@
+                    <th>Shipping Company</th>
+                    @*<th>Status</th>*@
+                    <th>Details</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>OrderNumber</th>
+                    <th>User</th>
+                    <th>Total</th>
+                   @* <th>OrderStatus</th>*@
+                    <th>Shipping Company</th>
+                    @*<th>Status</th>*@
+                    <th>Details</th>
+                    <th>Update Status</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              @foreach(var item in Model)
+              {
+              
+                  counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.ID</td>
+                   @* <td>@item.UserID</td>*@
+                <td>@item.User.FirstName @item.User.LastName</td>
+                    <td>@item.TotalPrice</td>
+                   @*  <td>@item.OrderStatus</td>*@
+                    <td>@item.Shipping.Name</td>
+                    @*<td>@item.StatusName</td>*@
+                    <td>@Html.ActionLink("Details", "Details", "OrderDetails", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Update Status", "UpdateStatus", "Order", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

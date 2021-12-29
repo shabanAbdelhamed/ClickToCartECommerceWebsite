@@ -1,0 +1,77 @@
+<div  class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-12 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Total Price</th>
+                        <th>Shipping Method</th>
+                        <th>Payment Type</th>
+                        <th>Details</th>
+                        <!-- <th>Status</th> -->
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr *ngFor="let item of orders ;" >
+                        <!-- <td class="align-middle"><img src="assets/{{item.Product.ImgCoverURl}}" alt="" style="width: 50px;"></td> -->
+                       
+                        <td>#{{item.ID}}</td>
+                        <td>{{item.TotalPrice}} </td>
+                        <td>{{getShippingName(item.shippingID)}}</td>
+                        <td>{{getPaymentName(item.PaymentID)}}</td>
+                       <td>
+                        <div class="input-group-btn">
+                            <button [routerLink]="['/Orderdetails/',item.ID]"  class="btn btn-sm btn-primary " >
+                                Details
+                            </button>
+                        </div>
+                       </td>
+                       <!-- <td  [hidden]="!item.OrderStatus ">  <div class="input-group-btn">
+                       <span class="badge bg-success">Deliverd
+                       </span>
+                     </div>
+                     </td> -->
+                        <!-- <td [hidden]="item.OrderStatus"> 
+                     <div class="input-group-btn">
+                       <span class="badge bg-danger rounded-pill text-light" >Pending</span>
+                    </div>
+                    </td>  -->
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+<!-- <div style="overflow-x:auto;">
+    <table class="container mt-2 table table-borderless">
+            <thead>
+                <th>Order ID</th>
+                <th>Total Price</th>
+                <th>Shipping Method</th>
+                <th>Payment Type</th>
+                
+                <th>Details</th>
+                <th>Status</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orders ;">
+                    <td>#{{item.ID}}</td>
+                    <td>{{item.TotalPrice}} </td>
+                    <td>{{getShippingName(item.shippingID)}}</td>
+                    <td>{{getPaymentName(item.PaymentID)}}</td>
+                    <td>
+                            <a [routerLink]="['/Orderdetails/',item.ID]" class="btn bg-primary btn-sm" role="banner"> 
+                                Details</a>
+                       </td>  
+                    <td class="badge bg-success" [hidden]="!item.OrderStatus ">Deliverd</td>
+                    <td class="badge bg-warning" [hidden]="item.OrderStatus">Pending</td>
+                    
+            
+                </tr>
+        
+            </tbody>
+        </table>
+</div> -->

@@ -1,0 +1,69 @@
+﻿@using CickToCart.DTOS
+@model ProductDto
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div class="card mb-4 mt-2">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Add Product
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddProduct", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Name)
+            @Html.LabelFor(c => c.Price)
+            @Html.TextBoxFor(c => c.Price, new { @class = "form-control", @type = "number", @min = "1" })
+            @Html.ValidationMessageFor(c => c.Price)
+            @Html.LabelFor(c => c.Qunatity)
+            @Html.TextBoxFor(c => c.Qunatity, new { @class = "form-control", @type = "number", @min = "1" })
+            @Html.ValidationMessageFor(c => c.Qunatity)
+            @Html.LabelFor(c => c.Description)
+            @Html.TextAreaFor(i => i.Description, new { @class = "form-control" })
+            @Html.Label("Image")
+            <input asp-for="Img" class="custom-file-input form-control" accept="image/*,.pdf" name="Img" id="customFile">
+            @Html.ValidationMessageFor(c => c.Img)
+            @Html.LabelFor(c => c.CatID)
+            @Html.DropDownListFor(c => c.CatID, new SelectList(ViewBag.Categories, nameof(ViewBag.Categories.ID), nameof(ViewBag.Categories.Name)), "select Category", new { @class = "form-control", @onchange = "FillSubCategory()" })
+            @Html.LabelFor(c => c.SubCategoryID)
+            @Html.DropDownListFor(c => c.SubCategoryID, new SelectList(Enumerable.Empty<SelectListItem>(), "SubCategoryID", "SubCategoryName"), "select Category", new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.SubCategoryID)
+            @*@Html.LabelFor(c => c.TagId)
+            @Html.DropDownListFor(c => c.TagId, new SelectList(ViewBag.Tags, nameof(ViewBag.Tags.ID), nameof(ViewBag.Tags.Title)), "selectone", new { @class = "form-control" })*@
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" />
+            @Html.ActionLink("Cancel", "All", "Products", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>
+@section Scripts{ 
+<script>
+    function FillSubCategory() {
+        console.log("here");
+        var CatId = $('#CatID').val();
+        $.ajax({
+            url: '/Products/FillSubCategory',
+            type: "GET",
+            dataType: "JSON",
+            data: { catid: CatId },
+            success: function (subcategories) {
+                console.log(subcategories);
+                $("#SubCategoryID").html(""); // clear before appending new list 
+                $.each(subcategories, function (i, SubCat) {
+                    $("#SubCategoryID").append(
+                        $('<option></option>').val(SubCat.id).html(SubCat.name));
+                });
+            }
+        });
+    }
+</script>
+}

@@ -1,0 +1,50 @@
+                <!-- Shop Product Start -->
+                  
+                      <div class="col-12 pb-1">
+                          <div class="d-flex align-items-center justify-content-between mb-4">
+                              <div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let item of prdsList | slice:(page - 1) * pageSize : (page -1) * pageSize + pageSize ">
+                          <div class="product-item bg-light mb-4">
+                              <div class="product-img position-relative overflow-hidden">
+                                  <img class="img-fluid w-100" src="https://localhost:44394/images/{{item.ImgCoverURl}}" alt="">
+                                  <div class="product-action">
+                                      <a class="btn btn-outline-dark btn-square" (click)="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
+                                      <a class="btn btn-outline-dark btn-square" [routerLink]="['/product',item.ID]"><i class="fa fa-search"></i></a>
+                                  </div>
+                              </div>
+                              <div class="text-center py-4" style="overflow: hidden ;">
+                                  <a class="h6 text-decoration-none text-truncate" [routerLink]="['/product',item.ID]" routerLinkActive="active">{{item.Name}}</a>
+                                  <div class="d-flex align-items-center justify-content-center mt-2">
+                                      <h5>${{item.Price}}</h5>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      </div>
+                      <div class="col-12">
+                        <nav>
+                          <ul class="pagination justify-content-center">
+                            <ngb-pagination [collectionSize]="prdsList.length" 
+                            [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+                          </ul>
+                        </nav>
+                    </div>
+                      <!-- <div class="col-12">
+                            <ngb-pagination [collectionSize]="prdsList.length" 
+                            [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+                      </div> -->
+                  
+              <!-- Shop Product End -->
+    
+    
+    
+<div style="clear: both;"></div>
+
+
+
+      

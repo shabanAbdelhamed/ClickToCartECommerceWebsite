@@ -1,0 +1,38 @@
+﻿@using CickToCart.DTOS
+@model TagViewModel
+@{
+    ViewData["Title"] = "UpdateTag";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="card mb-4">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Update Category
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("UpdateTag", "Tag", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Title)
+            @Html.TextBox("Title", ((Tag)ViewData["Tag"]).Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Title)
+            @Html.LabelFor(c => c.Meta_title)
+            @Html.TextBox("Meta_title", ((Tag)ViewData["Tag"]).Meta_title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Meta_title)
+            @Html.LabelFor(c => c.content)
+            @Html.TextBox("content", ((Tag)ViewData["Tag"]).content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.content)
+            @Html.Hidden("ID", ((Tag)ViewData["Tag"]).ID)
+            <input type="submit" class="btn btn-primary mt-2" value="Update" /><br /><br />
+            @Html.ActionLink("Cancel", "All", "Tag", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>
+
+

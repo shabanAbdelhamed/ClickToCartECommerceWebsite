@@ -1,0 +1,73 @@
+﻿@using CickToCart.Models
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "OrdersbyUsers";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+
+
+<div class="content mt-2">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row mb-5 g-4">
+                        <div class="col-md-3 col-sm-6">
+                            <p class="fw-bold">Name</p>
+                            @ViewBag.InfoUsers.FirstName  @ViewBag.InfoUsers.LastName
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <p class="fw-bold">Email</p>
+                            @ViewBag.InfoUsers.Email
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <p class="fw-bold">Address</p>
+                            @ViewBag.InfoUsers.Address
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card widget">
+            <h5 class="card-header">Orders</h5>
+                    <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>OrderID</th>
+                        <th>TotalPrice</th>
+                        <th>OrderStatus</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>OrderID</th>
+                        <th>TotalPrice</th>
+                       @* <th>OrderStatus</th>*@
+                    </tr>
+                </tfoot>
+                <tbody>
+                  @foreach(var item in Model)
+                {
+                    counter += 1;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.ID</td>
+                        <td>@item.TotalPrice</td>
+                       @* <td>@item.OrderStatus</td>*@
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+</div>
+

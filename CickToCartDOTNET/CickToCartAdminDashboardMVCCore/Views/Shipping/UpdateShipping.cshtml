@@ -1,0 +1,36 @@
+﻿@using CickToCart.DTOS
+@model ShippingViewModels
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    
+}
+<div class="card mb-4">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Update Discount
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("UpdateShipping", "Shipping", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBox("Name",((Shipping)ViewData["Shipping"]).Name,new { @class="form-control"})
+            @Html.LabelFor(c => c.Location)
+            @Html.TextBox("Number",((Shipping)ViewData["Shipping"]).Location,new { @class="form-control"})
+            @Html.LabelFor(c => c.Phone)
+            @Html.TextBox("Start Date",((Shipping)ViewData["Shipping"]).Phone,new { @class="form-control"})
+            @Html.LabelFor(c => c.Information)
+            @Html.TextBox("End Date",((Shipping)ViewData["Shipping"]).Information,new { @class="form-control"})
+            @Html.Hidden("ID", ((Shipping)ViewData["Shipping"]).ID)
+
+            <input type="submit" class="btn btn-primary mt-2" value="Update" /><br /><br />
+            @Html.ActionLink("Cancel", "All", "Shipping", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>

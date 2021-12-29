@@ -1,0 +1,97 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<OrderViewModels>
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+        int counter = 0;
+}
+<h2>Dashboard</h2>
+<div class="row">
+    <div class="col-xl-6 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Orders Count : @ViewBag.CountOrders</div>
+            <div class="card-body">Total Payments : @ViewBag.SumOrders</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+@*    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">Warning Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>*@
+    <div class="col-xl-6 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">Orders Count Today : @ViewBag.CountByDateOrders</div>
+            <div class="card-body">Total Payments Today : @ViewBag.SumByDateOrders</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+@*    <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body">Danger Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>*@
+</div>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Orders
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>OrderID</th>
+                    <th>User</th>
+                    <th>Total</th>
+                  @*  <th>OrderStatus</th>*@
+                    <th>Company</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>OrderID</th>
+                    <th>User</th>
+                    <th>Total</th>
+                   @* <th>OrderStatus</th>*@
+                    <th>Company</th>
+                    <th>Details</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              @foreach(var item in Model)
+              {
+              
+                  counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.ID</td>
+                   @* <td>@item.UserID</td>*@
+                <td>@item.User.FirstName @item.User.LastName</td>
+                    <td>@item.TotalPrice</td>
+                   @*  <td>@item.OrderStatus</td>*@
+                    <td>@item.Shipping.Name</td>
+                    <td>@Html.ActionLink("Details", "Details", "OrderDetails", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+</div>

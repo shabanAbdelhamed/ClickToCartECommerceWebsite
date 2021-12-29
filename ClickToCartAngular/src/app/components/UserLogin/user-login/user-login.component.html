@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <P>Sign Into Your Account </P>
+    </div>
+    <form   name="loginForm"  ngForm="loginForm" #userLoginForm="ngForm" [formGroup]="loginForm">
+      <div class="emailInput">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input
+            formControlName="Username"
+            matInput
+            placeholder="Enter User Name" required
+          />
+          <mat-error *ngIf="!loginForm.controls['Username'].valid">
+              User Name is required
+            </mat-error>
+            
+        </mat-form-field>
+      </div>
+
+      <div>
+          <mat-error class="mb-3" *ngIf="!isLogin">
+              UserName Or Password is Incorrect
+            </mat-error>          
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input  formControlName="Password" matInput [type]=" hide ? 'password' : 'text'" required />
+          <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+      </button>
+      <mat-error *ngIf="!loginForm.controls['Password'].valid">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <button class="btn btn-primary" [disabled]="!loginForm.valid"   (click)="login(userLoginForm)">Login</button>
+    </form>
+  <div class="container">
+      <div class="row">
+          <span class="nav-item col-6">
+              <a class="btn btn-info" routerLink="/auth/forgot-password">Forgot Password?</a>
+          </span>
+          <span class="nav-item col-6">
+              <a class="btn btn-primary"  routerLink='/SignUp' routerLinkActive="active"> Create New Account</a>
+          </span>
+        </div>
+  </div>
+    
+  
+  </mat-card-content>
+</mat-card>

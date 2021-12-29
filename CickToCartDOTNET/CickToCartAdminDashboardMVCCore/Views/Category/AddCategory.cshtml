@@ -1,0 +1,34 @@
+﻿@using CickToCart.DTOS
+@model CategoryViewModel 
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+
+<div class="card mb-4">
+    <div class="card-header ">
+        
+            <i class="fas fa-table me-1"></i>
+            Add Category
+        
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddCategory","Category",FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Name)
+            
+
+            <input type="submit" class="btn btn-primary" value="Add" />
+            @Html.ActionLink("Cancel", "All", "Category", null, new { @class = "btn btn-danger mt-1" })
+        }
+
+    </div>
+</div>
+

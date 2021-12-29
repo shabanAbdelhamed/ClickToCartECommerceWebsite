@@ -1,0 +1,142 @@
+<!-- <div class="row col-12">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" (click)="Category(cat.id)">Home</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+      </li>
+    </ul>
+   --><!--<div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h4>{{cat.id}}</h4>
+          <h3>{{cat.name}}</h3>
+          <h4>{{cat.CategoryID}}</h4>
+      </div> -->
+<!-- <div class="container-fluid">
+  <div class="row m-3">
+    <mat-card class="example-card"  *ngFor="let prd of prdsub">
+      <mat-card-title-group>
+        <mat-card-title><a class="nav-link"  [routerLink]="['/product',prd.ID]" routerLinkActive="active">{{prd.Name}}</a></mat-card-title>
+        <mat-card-subtitle>{{prd.Price}}</mat-card-subtitle>
+        <img mat-card-xl-image src="assets/{{prd.ImgCoverURl}}">
+      </mat-card-title-group>
+      <mat-card-content>
+        {{prd.Description}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+   
+
+</div> --> 
+
+     
+    <!-- products section -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+      <!-- Shop Sidebar Start -->
+      <div class="col-lg-3 col-md-4">
+        <div class="border-bottom pb-2">
+          <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary ">Filters</span></h5>
+
+          <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Search</mat-label>
+              <input matInput #message maxlength="256" [(ngModel)]='filteredOptions' name="filteredOptions">
+            
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+          </form>
+      </div>
+          <!-- Price Start -->
+          <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Price</span></h5>
+          <div class="bg-light pt-4 mb-30">
+              <form >
+                  <div class="custom-control custom-checkbox  mb-3">
+                    <div class="col-12 d-flex justify-content-between mb-3">
+                      <label for="mini">Minimum Price : </label>
+                      <input type="number" class="h-100" min="10" max="25000" name="minimum" [(ngModel)]="min">
+                    </div>
+                    <div class="col-12 d-flex justify-content-between">
+                      <input type="range" id="mini" class="w-100" name="mini" min="10" max="25000" [(ngModel)]="min">
+                      <!-- <span class="badge border font-weight-normal ">{{min}}</span> -->
+                    </div>
+                  </div>
+                  <div class="custom-control custom-checkbox  mb-3" >
+                    <div class="col-12 d-flex justify-content-between mb-3">
+                      <label for="maxi"  >Maximum Price :</label>
+                      <input type="number" class="h-100" (change)="CheckValue($event)" [min]="min" max="25000" name="maximum" [(ngModel)]="max">
+                    </div> 
+                    <div class="col-12 d-flex justify-content-between">
+                      <input type="range" id="maxi" class="w-100"  name="maxi" [min]="min" max="25000" [(ngModel)]="max">
+                    <!-- <span class="badge border font-weight-normal">{{max }}</span><br> -->
+                    </div>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3" >
+                  <a  class="btn btn-primary"  (click)="FilterPrice()">Filter</a>
+              </div>
+              </form>
+          </div>
+          <!-- Price End -->
+          
+         
+          <!-- Color End -->
+
+          
+      </div>
+      <!-- Shop Sidebar End -->
+
+
+      <!-- Shop Product Start -->
+      <div class="col-lg-9 col-md-8">
+          <div class="row pb-3">
+              <div class="col-12 pb-1">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                      <div>
+                          <h6>{{subCatName}} Products :</h6>
+                      </div>
+                      
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 pb-1"  *ngFor=" let item of prdsub |search:filteredOptions | slice:(page - 1) * pageSize : (page -1) * pageSize + pageSize ">
+                  <div class="product-item bg-light mb-4">
+                      <div class="product-img position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="https://localhost:44394/images/{{item.ImgCoverURl}}" alt="">
+                          <div class="product-action">
+                              <a class="btn btn-outline-dark btn-square" (click)="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
+                              <a class="btn btn-outline-dark btn-square" [routerLink]="['/product',item.ID]"><i class="fa fa-search"></i></a>
+                          </div>
+                      </div>
+                      <div class="text-center py-4" style="overflow: hidden ;">
+                          <a class="h6 text-decoration-none text-truncate" [routerLink]="['/product',item.ID]">{{item.Name}}</a>
+                          <div class="d-flex align-items-center justify-content-center mt-2">
+                              <h5>{{item.Price}}$</h5><h6 class="text-muted ml-2"></h6>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             
+              
+          </div>
+          <div class="col-12">
+            <nav>
+              <ul class="pagination justify-content-center">
+                <ngb-pagination [collectionSize]="prdsub.length" 
+                [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+              </ul>
+            </nav>
+          </div>
+      </div>
+      <!-- Shop Product End -->
+  </div>
+</div>
+
+
+
+  
+  
+   
+  

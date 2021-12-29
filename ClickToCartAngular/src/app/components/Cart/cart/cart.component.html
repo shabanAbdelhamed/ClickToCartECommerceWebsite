@@ -1,0 +1,171 @@
+
+
+<div  *ngIf="totalPrice >0" class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <tr *ngFor="let item of shoppingCart.CartDetailsItems">
+                        <td class="align-middle"><img src="assets/{{item.Product.ImgCoverURl}}" alt="" style="width: 50px;"></td>
+                        <td>{{item.Product.Name}}</td>
+                        <td class="align-middle">{{item.Product.Price|currency}}</td>
+                        <td class="align-middle">
+                            <div class="input-group quantity mx-auto" style="width: 100%;">
+                                <div class="input-group-btn">
+                                    <button (click)="decreaseQuantity(item.Product,qty)" class="btn btn-sm btn-primary btn-minus" >
+                                    <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input min="1" #qty (change)="updateQuantity(item,qty)" [max]="item.Product.Qunatity" type="number" value="{{item.Quantity}}" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                <!-- <h1>test {{item.Product.Qunatity}}</h1> -->
+                                <div class="input-group-btn">
+                                    <button (click)="increaseQuantity(item.Product,qty)" class="btn btn-sm btn-primary btn-plus">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">{{item.Price|currency}}</td>
+                        <td class="align-middle"><button (click)="deleteItem(item)" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Subtotal</h6>
+                        <h6>{{this.totalPrice|currency}}</h6>
+                    </div>
+                    <!-- <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div> -->
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5>{{this.totalPrice|currency}}</h5>
+                    </div>
+                    <a [routerLink]="['/checkout']" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div  *ngIf="totalPrice ==0" class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Cart</h5>
+                </div>
+                <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                        <h3><strong>Your Cart is Empty</strong></h3>
+                        <h4>Add something to make me happy :)</h4> <a routerLink="/Product" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="card">
+    <div class="row">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col">
+                        <h4><b>Shopping Cart</b></h4>
+                    </div>
+                    <div class="col align-self-center text-right text-muted">{{this.countCart}} Products</div>
+                </div>
+            </div>
+            <div *ngFor="let item of shoppingCart.CartDetailsItems" class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src="assets/{{item.Product.ImgCoverURl}}"></div>
+                    <div class="col-2">
+
+                        <div class="row text-muted">{{item.Product.SubCategory}}</div>
+                        <div >{{item.Product.Name }}</div>
+
+                        <!-- <div class="row text-muted">{{item.Product.SubCategory}}</div> -->
+                        <!-- <div >{{item.Product.Name }}</div>
+
+                    </div>
+                    <div class="col-5">
+                         <a class="btn btn-outline-success  btn-info rounded-circle m-1" (click)="decreaseQuantity(item.Product,qty)">-</a>
+                         <input min="1" (change)="updateQuantity(item,qty)" #qty type="number" class="h-25 w-25 d-inline" value="{{item.Quantity}}">
+                         <a class="btn btn-outline-success  btn-info rounded-circle m-1" (click)="increaseQuantity(item.Product,qty)">+</a > </div>
+                    <div class="col-2"> {{item.Product.Price}} 
+                        </div>
+                    <div class="col-1">
+                            <span class="close">&nbsp;&nbsp;<button type="button" (click)="deleteItem(item)" class="btn-close" aria-label="Close">
+
+                                </button></span>
+                    </div>
+                </div>
+               
+            </div>
+           
+            <div class="back-to-shop"><a routerLink="/Product">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+        </div>
+        <div class="col-md-4 summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" style="padding-left:0;">{{countCart}} Items</div>
+                <div class="col text-right">{{totalPrice|currency}}</div>
+            </div>
+           
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">TOTAL PRICE</div>
+                <div class="col text-right">{{totalPrice|currency}}</div>
+            </div> <button [routerLink]="['/checkout']" class="btn1">CHECKOUT</button>
+        </div>
+    </div>
+</div> -->

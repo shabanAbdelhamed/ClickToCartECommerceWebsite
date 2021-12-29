@@ -1,0 +1,67 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<TagViewModel>
+@{
+    ViewData["Title"] = "AllTags";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="card mb-4 mt-2">
+<div class="card-header d-flex justify-content-between">
+    <span>
+        <i class="fas fa-table me-1"></i>
+        All Tags
+    </span>
+    <span>
+        <a href="/Tag/AddTag" class="btn btn-success "><i class="fa fa-plus "></i> Add</a>
+    </span>
+
+</div>
+<div class="card-body ">
+
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tite</th>
+                <th> Meta_Title</th>
+                <th>Content</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Meta_Title </th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.Title</td>
+                    
+                        <td>@item.Meta_title</td>
+                    
+                        <td>@item.content</td>
+                    
+                    
+                    <td>
+                        @Html.ActionLink("Update", "UpdateTag", "Tag", new { id = item.ID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteTag", "Tag", new { id = item.ID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+</div>
+

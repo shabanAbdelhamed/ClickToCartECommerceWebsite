@@ -1,0 +1,100 @@
+<!-- (ngSubmit)="SignUp()" -->
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <P>Register Now! </P>
+    </div>
+    <form  name="RegisterForm" [formGroup]="RegisterForm" ngForm="RegisterForm" #userRegistrationForm="ngForm" >
+      <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>UserName</mat-label>
+            <input  formControlName="UserName" ([ngModle])="user.UserName" name="UserName" value="UserName" matInput [type]=" hide ? 'UserName' : 'text' "  placeholder="Enter Your UserName" required />
+        <mat-error *ngIf="!RegisterForm.controls['UserName'].valid">
+            UserName is required
+          </mat-error>
+          
+        </mat-form-field>
+        <mat-error *ngFor="let Item of Errors">
+             <span *ngIf="Item.Code.includes('User')">{{Item.Description}}</span>
+        </mat-error>
+        </div>
+        <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>FirstName</mat-label>
+            <input  formControlName="FirstName" ([ngModle])="user.FirstName" name="FirstName" value="FirstName" matInput [type]=" hide ? 'FirstName' : 'text' "  placeholder="Enter Your FirstName" required />
+           
+        <mat-error *ngIf="!RegisterForm.controls['FirstName'].valid">
+          FirstName is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>LastName</mat-label>
+            <input  formControlName="LastName" ([ngModle])="user.LastName" name="LastName" value="LastName" matInput [type]=" hide ? 'LastName' : 'text' "  placeholder="Enter Your LastName" required />
+            
+        <mat-error *ngIf="!RegisterForm.controls['LastName'].valid">
+          LastName is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+      <div class="emailInput">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input  type="email" formControlName="Email" ([ngModle])="user.Email" name="Email" value="Email" matInput  [type]=" hide ? 'Email' : 'text' " placeholder="Enter email address" required/>
+          
+          <mat-error *ngIf="!RegisterForm.controls['Email'].valid">
+              Email is required
+            </mat-error>
+        </mat-form-field>
+        <mat-error *ngFor="let Item of Errors">
+          <span *ngIf="Item.Code.includes('Email')">{{Item.Description}}</span>
+        </mat-error>
+      </div>
+
+      <div class="emailInput" >
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input   formControlName="Password" ([ngModle])="user.Password" name="Password" value="Password" matInput  [type]=" hide ? 'password' : 'text'"  placeholder="Enter Your Password" required />
+          <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+      </button>
+      <mat-error *ngIf="!RegisterForm.controls['Password'].valid">
+          Password is required
+        </mat-error>
+        
+      </mat-form-field>
+      </div>
+      
+      <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input type="text" formControlName="PhoneNumber" ([ngModle])="user.PhoneNumber" name="PhoneNumber" value="PhoneNumber" matInput [type]=" hide ? 'PhoneNumber' : 'text'"  placeholder="Enter Your Phone" required />
+            
+        <mat-error *ngIf="RegisterForm.controls['PhoneNumber'].hasError('required')">
+          PhoneNumber is required
+          </mat-error>
+          <mat-error *ngIf="RegisterForm.controls['PhoneNumber'].hasError('pattern')">
+             number must start with 01 and not exceed 11 numbers like 01234568478
+            </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input  formControlName="Address" ([ngModle])="user.Address" name="Address" value="Address" matInput [type]=" hide ? 'Address' : 'text'"  placeholder="Enter Your Address" required />
+            
+        <mat-error *ngIf="!RegisterForm.controls['Address'].valid">
+          Address is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+      <button mat-flat-button color="primary" [disabled]="!RegisterForm.valid" (click)="Register(userRegistrationForm)">Register</button>
+    </form>
+   
+  </mat-card-content>
+</mat-card>
+

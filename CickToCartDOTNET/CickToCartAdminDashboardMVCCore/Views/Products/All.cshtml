@@ -1,0 +1,74 @@
+﻿@using CickToCart.Models
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            All Products
+        </span>
+        <span>
+            <a href="/Products/AddProduct" class="btn btn-success "><i class="fa fa-plus "></i> Add</a>
+        </span>
+
+    </div>
+    <div class="card-body ">
+
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>SubCategory Name</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>SubCategory Name</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    
+                        <td>@item.Qunatity</td>
+                    
+                    
+                    <td>@item.SubCategory.Name</td>
+                   
+                    @*<td>
+                        @Html.ActionLink("Add Color", "AddProduct_color", "Product_color", new { id = item.ID }, new { @class = "btn btn-primary" })
+                  
+                    </td>*@
+                    <td>
+                        @Html.ActionLink("Update", "UpdateProduct", "Products", new { id = item.ID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteProduct", "Products", new { id = item.ID }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Details", "Details", "Products", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

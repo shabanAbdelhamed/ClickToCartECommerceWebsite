@@ -1,0 +1,117 @@
+﻿@using CickToCart.Models
+@model Product
+@{
+    ViewData["Title"] = "Deatials";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+<section class="mb-5 mt-3">
+
+    <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+
+           
+            
+
+            <div class="mdb-lightbox">
+
+            <div class="row product-gallery mx-1">
+
+                <div class="col-12 mb-0">
+
+                    <figure class="view overlay rounded z-depth-1 main-img h-50">
+                        
+                            <img src="~/images/@Model.ImgCoverURl"
+                                 class="img-fluid z-depth-1 img-thumbnail ">
+                        
+                    </figure>
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+        <div class="col-md-6 mt-5">
+
+
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Model</strong></th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>SubCategory</strong></th>
+                            <td>@Model.SubCategory.Name</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Price</strong></th>
+                            <td>@Model.Price</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Description</strong></th>
+                            <td>@Model.Description</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Quantity</strong></th>
+                            <td>@Model.Qunatity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+           
+                    
+               
+        </div>
+      </div>
+    <div class="row">
+        <h6>
+            <i class="fas fa-table me-1"></i>
+            Reviews
+        </h6>
+
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th> User Name</th>
+                    <th>Rataing</th>
+                    <th>Comment</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th> User Name</th>
+                    <th>Rataing</th>
+                    <th>Comment</th>
+                </tr>
+            </tfoot>
+            <tbody>
+
+                @foreach (var rate in ViewBag.Rataing)
+                {
+                    counter += 1;
+                    <tr>
+
+
+                        <th>@counter</th>
+                        <th>@rate.User.FirstName</th>
+                        <th>@rate.Rate</th>
+                        <th>@rate.Comments</th>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+

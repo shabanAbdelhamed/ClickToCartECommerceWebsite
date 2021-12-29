@@ -1,0 +1,34 @@
+﻿@using CickToCart.DTOS
+@model SizeViewModel 
+@{
+    ViewData["Title"] = "AddColor";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="card mb-4 mt-2">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Add Size
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddSize", "Size", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Name)
+            @Html.LabelFor(c => c.Discription)
+            @Html.TextBoxFor(c => c.Discription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Discription)
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" /><br /><br />
+            @Html.ActionLink("Cancel", "All", "Size", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>
+

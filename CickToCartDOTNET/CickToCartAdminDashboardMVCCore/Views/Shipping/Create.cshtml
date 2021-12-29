@@ -1,0 +1,60 @@
+﻿@using CickToCart.DTOS
+@model ShippingViewModels
+@{
+    ViewData["Title"] = "CreateShipping";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    
+}
+<div class="card mb-4">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Create Discount
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("Create", "Shipping", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+            //@Html.TextBox("Name",@Model.Name,new { @class="form-control"})
+            @Html.LabelFor(c => c.Location)
+            @Html.TextBoxFor(i => i.Location, new { @class = "form-control" })
+            @Html.LabelFor(c => c.Phone)
+            @Html.TextBoxFor(i => i.Phone, new { @class = "form-control"})
+            @Html.LabelFor(c => c.Information)
+            @Html.TextAreaFor(i => i.Information, new { @class = "form-control" })
+            @Html.LabelFor(c => c.ImgUrl)
+            @Html.TextBoxFor(i => i.ImgUrl, new { @class = "form-control" })
+            
+            //@Html.TextBox("Number",@Model.Number,new { @class="form-control"})
+            //@Html.TextBoxFor(i => i.Start_Date, new { @class = "form-control",@type = "datetime-local",placeholder="DateTime" })
+            //@Html.TextBoxFor(i => i.Start_Date, new { @class = "form-control",@type = "date",placeholder="DateTime" })
+            //@Html.LabelFor(c => c.Start_Date)
+            //@Html.EditorFor(model => model.Start_Date, new { htmlAttributes = new {@class="form-control"}})
+            //@Html.TextBox("Start Date",@Model.Start_Date,new { @class="form-control"})
+            //@Html.TextBoxFor(i => i.Start_Date, new { @class = "form-control" })
+            //@Html.EditorFor(i => i.Start_Date, new { @class = "form-control" })
+            //@Html.Editor("Start_Date", new { @class = "form-control" })
+            //            <br />
+
+            //@Html.LabelFor(c => c.End_Date)
+            //@Html.EditorFor(model => model.End_Date, new { htmlAttributes = new {@class="form-control"}})
+
+            //@Html.TextBox("End Date",@Model.End_Date,new { @class="form-control"})
+            //@Html.EditorFor(i => i.End_Date, new { @class = "form-control" })
+            //@Html.Editor("End_Date", new { @class = "form-control" })
+            //           <br />
+            //@Html.TextBoxFor(i => i.End_Date, new { @class = "form-control" })
+
+            @Html.HiddenFor(i => i.ID)
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" /><br /><br />
+            @Html.ActionLink("Cancel", "All", "Shipping", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<ShippingViewModels>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            Shipping Compaies
+        </span>
+        <span>
+            <a href="/Shipping/Create" class="btn btn-success "><i class="fa fa-plus "></i> Add</a>
+        </span>
+
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Phone</th>
+                    <th>Location</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Phone</th>
+                    <th>Location</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              @foreach(var item in Model)
+            {
+                counter += 1;
+                <tr>
+                    @*<td>@item.ID</td>*@
+                    <td>@counter</td>
+                    <td>@item.Name</td>
+                    <td>@item.ImgUrl</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Location</td>
+                    <td>@Html.ActionLink("Details", "Details", new { id = item.ID },new { @class = "btn btn-primary"})</td>
+                    <td>
+                    @Html.ActionLink("Update", "UpdateShipping", "Shipping", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteShipping", "Shipping", new { id = item.ID }, new { @class = "btn btn-danger" })
+
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

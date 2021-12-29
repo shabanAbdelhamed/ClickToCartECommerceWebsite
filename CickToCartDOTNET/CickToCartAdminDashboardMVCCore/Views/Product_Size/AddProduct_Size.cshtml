@@ -1,0 +1,75 @@
+﻿@using CickToCart.DTOS
+@model Product_SizeDto
+@{
+    ViewData["Title"] = "AddProduct Size";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            @ViewBag.prdName @ViewBag.colrName 
+        </span>
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddProduct_Size", "Product_Size", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.sizeID)
+            @Html.DropDownListFor(c => c.sizeID, new SelectList(ViewBag.Sizes, nameof(ViewBag.Sizes.ID), nameof(ViewBag.Sizes.Name)), "selectone", new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.sizeID)
+            @Html.LabelFor(c => c.QTE)
+            @Html.TextBoxFor(c => c.QTE, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.QTE)
+            //@Html.LabelFor(c => c.ProductID)
+            //@Html.HiddenFor(c => c.ProductID, new { @class = "form-control",@value="ViewBag.ProductID" })
+            @Html.Hidden("Product_ColorID", ((int)ViewBag.ProdColorID))
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" />
+            @Html.ActionLink("Cancel", "AddProduct_color", "Product_color",new { @id = (int)ViewBag.ProdColorID } , new { @class = "btn btn-danger mt-1" })
+        }
+
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>QTE</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>QTE</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              @foreach(var item in ViewBag.liSizes)
+            {
+                counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.size.Name</td>
+                    <td>@item.size.Discription</td>
+                    <td>@item.QTE</td>
+                    <td>
+                    @Html.ActionLink("Update", "AddProduct_Size", "Product_Size", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

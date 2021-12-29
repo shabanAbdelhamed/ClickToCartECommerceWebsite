@@ -1,0 +1,35 @@
+﻿@using CickToCart.DTOS
+@model SubCategoryViewModel
+@{
+    ViewData["Title"] = "AddSubCategory";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="card mb-4">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Add SubCategory
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddSubCategory", "SubCategory", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Name)
+            @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Name)
+            @*@Html.LabelFor(c => c.DiscountID)
+            @Html.DropDownListFor(c => c.DiscountID, new SelectList(ViewBag.Discounts, nameof(ViewBag.Discounts.ID), nameof(ViewBag.Discounts.Name)), "selectone", new { @class = "form-control" })*@
+            @Html.LabelFor(c => c.CategoryID)
+            @Html.DropDownListFor(c => c.CategoryID, new SelectList(ViewBag.Categories, nameof(ViewBag.Categories.ID), nameof(ViewBag.Categories.Name)), "selectone", new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.CategoryID)
+            <input type="submit" class="btn btn-primary mt-2" value="Add" />
+            @Html.ActionLink("Cancel", "All", "SubCategory", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>
+

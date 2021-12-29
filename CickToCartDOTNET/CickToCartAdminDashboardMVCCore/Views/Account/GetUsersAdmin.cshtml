@@ -1,0 +1,64 @@
+﻿@using CickToCart.DTOS
+@model IEnumerable<UserListDTO>
+@{
+    ViewData["Title"] = "All Admins";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            All Admin
+        </span>
+
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Address</th>
+                    <th>PhoneNumber</th>
+                    <th>Userame</th>
+                    <th>Email</th>
+                    <th>IsActive</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Address</th>
+                    <th>PhoneNumber</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>IsActive</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    counter += 1;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.Address</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+                        <td>@item.IsActive</td>
+                        @*<td>
+                                <a href="" class="btn btn-primary">Edit</a>
+                                @Html.ActionLink("Delete", "DeleteOrder", "Order", new { id = item.ID }, new { @class = "btn btn-danger" })
+                            </td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

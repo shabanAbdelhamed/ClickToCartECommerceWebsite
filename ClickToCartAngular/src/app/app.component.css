@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: whitesmoke;
+  overflow-x: hidden !important;
+}
+/*# sourceMappingURL=app.component.css.map */

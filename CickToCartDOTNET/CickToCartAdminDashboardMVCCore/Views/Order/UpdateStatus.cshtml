@@ -1,0 +1,35 @@
+﻿@using CickToCart.DTOS
+@model OrderStatusDTO
+@{
+    ViewData["Title"] = "UpdateOrderStatus";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+<div class="card mb-4">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Update Order Status
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("UpdateStatus", "Order", FormMethod.Post))
+        {
+            @*@Html.Label(c => c.Number)*@
+            @Html.Label("OrderID")
+            @Html.TextBox("OrderID",(int)ViewBag.Order.ID, new { @class = "form-control",@Readonly="readonly" })
+            @Html.LabelFor(c => c.StatusDate)
+            @Html.EditorFor(model => model.StatusDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(i => i.StatusDate)
+            @*@Html.LabelFor(c => c.StatusID)*@
+            @Html.Label("Status")
+            @Html.DropDownListFor(c => c.StatusID, new SelectList(ViewBag.Status, nameof(ViewBag.Status.ID), nameof(ViewBag.Status.Name)), "Select Status", new { @class = "form-control"})
+            <input type="submit" class="btn btn-primary mt-2" value="Update" />
+            @Html.ActionLink("Cancel", "GetAll", "Orders", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>

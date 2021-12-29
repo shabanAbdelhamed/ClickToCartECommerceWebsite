@@ -1,0 +1,68 @@
+﻿@using CickToCart.Models
+@model IEnumerable<SubCategory>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            All Categoies
+        </span>
+        <span>
+            <a href="/SubCategory/AddSubCategory" class="btn btn-success "><i class="fa fa-plus "></i> Add</a>
+        </span>
+
+    </div>
+    <div class="card-body ">
+
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    counter += 1;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.Name</td>
+                        @*@if (item.DiscountID == null)
+                        {
+                            <td>No Available Discount</td>
+                        }
+                        else
+                        {
+                            <td>@item.Discount.Name</td>
+                        }*@
+                        <td>@item.Category.Name</td>
+                        <td>
+                            @Html.ActionLink("Update", "UpdateSubCategory", "SubCategory", new { id = item.ID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Delete", "DeleteSubCategory", "SubCategory", new { id = item.ID }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+

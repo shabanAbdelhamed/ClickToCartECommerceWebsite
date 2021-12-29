@@ -1,0 +1,94 @@
+  <!-- Shop Start -->
+  <div class="container-fluid">
+    <div class="row px-xl-5 ">
+        <!-- Shop Sidebar Start -->
+        <!-- Search Start  -->
+        <div class="col-lg-3 col-md-4">
+          <div class="border-bottom pb-2">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary ">Filters</span></h5>
+
+            <form class="example-form">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Search</mat-label>
+                <input matInput #message maxlength="256" [(ngModel)]='filteredOptions' name="filteredOptions">
+              
+                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+              </mat-form-field>
+            </form>
+        </div>
+        <!--Search End  -->
+        <!--Category Search Start  -->
+        <div class="py-2 border-bottom">
+          <h6 class="font-weight-bold">Category</h6>
+          <div id="orange"><span class="fa fa-minus"></span></div>
+          
+            <mat-form-field appearance="fill">
+              <mat-label >Category</mat-label>
+              <mat-select  [(ngModel)]="SelectedCategory" (selectionChange)="GetSubCatBySelection()">
+                <mat-option  [value]="0" >All</mat-option>
+                <mat-option *ngFor="let Cat of catlist" [value]="Cat.ID" > {{Cat.Name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+    <!--Category Search End  -->
+            <!-- SubCategory Search Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by SubCategory</span></h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div *ngFor="let sub of subCat" class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="SelectedCategory" [value]="sub.ID"
+                        (click)="checkCheckBoxvalue($event,sub.ID)" id="{{ sub.Name }}">
+                        <label class="custom-control-label" for="{{ sub.Name }}">{{ sub.Name }}</label>
+                        <!-- <span class="badge border font-weight-normal">1000</span> -->
+                    </div>
+                </form>
+            </div>
+            <!-- SubCategory Search End -->
+                          <!-- Size start -->
+                          <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Price</span></h5>
+                          <div class="bg-light pt-4 mb-30">
+                              <form >
+                                  <div class="custom-control custom-checkbox  mb-3">
+                                    <div class="col-12 d-flex justify-content-between mb-3">
+                                      <label for="mini">Minimum Price : </label>
+                                      <input type="number" class="h-100" min="10" max="25000" name="minimum" [(ngModel)]="min">
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-between">
+                                      <input type="range" id="mini" class="w-100" name="mini" min="10" max="25000" [(ngModel)]="min">
+                                      <!-- <span class="badge border font-weight-normal ">{{min}}</span> -->
+                                    </div>
+                                  </div>
+                                  <div class="custom-control custom-checkbox  mb-3" >
+                                    <div class="col-12 d-flex justify-content-between mb-3">
+                                      <label for="maxi"  >Maximum Price :</label>
+                                      <input type="number" class="h-100" (change)="CheckValue($event)" [min]="min" max="25000" name="maximum" [(ngModel)]="max">
+                                    </div> 
+                                    <div class="col-12 d-flex justify-content-between">
+                                      <input type="range" id="maxi" class="w-100"  name="maxi" [min]="min" max="25000" [(ngModel)]="max">
+                                    <!-- <span class="badge border font-weight-normal">{{max }}</span><br> -->
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3" >
+                                  <a  class="btn btn-primary"  (click)="FilterPrice()">Filter</a>
+                              </div>
+                              </form>
+                          </div>
+                          <!-- Size End -->
+        </div>
+        <!-- Shop Sidebar End -->
+
+        <div class="col-9 ">
+          <app-product [prdList]="prdList |search:filteredOptions"  ></app-product>
+
+        </div>
+    </div>
+
+
+</div>
+<!-- Shop End -->
+
+
+
+
+
+

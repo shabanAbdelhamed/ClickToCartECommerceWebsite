@@ -1,0 +1,68 @@
+﻿@using CickToCart.DTOS
+@model Product_colorDto
+@{
+    ViewData["Title"] = "AddProduct Color";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    int counter = 0;
+}
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <i class="fas fa-table me-1"></i>
+            @ViewBag.ProdName
+        </span>
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddProduct_color", "Product_color", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(c => c.colorID)
+            @Html.DropDownListFor(c => c.colorID, new SelectList(ViewBag.Colors, nameof(ViewBag.Colors.ID), nameof(ViewBag.Colors.Name)), "selectone", new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.colorID)
+            @Html.Label("Image")
+            <input asp-for="Img" class="custom-file-input form-control" accept="image/*,.pdf" name="Img" id="customFile">
+            @Html.ValidationMessageFor(i => i.Img)
+            //@Html.LabelFor(c => c.ProductID)
+            //@Html.HiddenFor(c => c.ProductID, new { @class = "form-control",@value="ViewBag.ProductID" })
+            @Html.Hidden("ProductID", ((int)ViewBag.ProductID))
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" />
+            @Html.ActionLink("Cancel", "All", "Products", null, new { @class = "btn btn-danger mt-1" })
+        }
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+              @foreach(var item in ViewBag.liColor)
+            {
+                counter += 1;
+                <tr>
+                    <td>@counter</td>
+                    <td>@item.color.Name</td>
+                    <td>@item.color.Code</td>
+                    <td>
+                    @Html.ActionLink("Add Size", "AddProduct_Size", "Product_Size", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,39 @@
+﻿@using CickToCart.DTOS
+@model TagViewModel
+@{
+    ViewData["Title"] = "AddTag";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="card mb-4 mt-2">
+    <div class="card-header ">
+
+        <i class="fas fa-table me-1"></i>
+        Add Tag
+
+
+    </div>
+    <div class="card-body w-50 ">
+
+        @using (Html.BeginForm("AddTag", "Tag", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.Title)
+            @Html.TextBoxFor(c => c.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Title)
+            @Html.LabelFor(c => c.Meta_title)
+            @Html.TextBoxFor(c => c.Meta_title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Meta_title)
+            @Html.LabelFor(c => c.content)
+            @Html.TextBoxFor(c => c.content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.content)
+
+
+            <input type="submit" class="btn btn-primary mt-2" value="Add" /><br /><br />
+            @Html.ActionLink("Cancel", "All", "Tag", null, new { @class = "btn btn-danger mt-1" })
+
+        }
+
+    </div>
+</div>
+
+
