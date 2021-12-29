@@ -69,7 +69,8 @@ next:(resp:any)=>{
             }
             },
   error:(e)=>{
-    alert(e)
+    // alert(e)
+    console.log(e)
   }
 })
 };

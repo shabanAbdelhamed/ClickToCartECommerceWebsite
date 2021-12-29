@@ -42,15 +42,15 @@ resultModel:ResultViewModel={} as ResultViewModel
   //   this.route.navigateByUrl('/Home');
   // }
 
-  login(form:NgForm)
+   login(form:NgForm)
   {
-    debugger
+   
    const test={} as any
 this.userServ.Login(form.value).subscribe({
-  next:(r:any)=>{
+   next: (r:any)=>{
     if(r.success)
     {
-      debugger;
+     
       console.log("======================Login data ======================");
       console.log(r);
      this.userServ.setIsLogged(r.success)
@@ -58,13 +58,8 @@ this.userServ.Login(form.value).subscribe({
      localStorage.setItem("Result",JSON.stringify(r.data))
     // localStorage.setItem("Result",r.data);
      localStorage.setItem("Token",r.data.Token)
-    
-     this.cartService.postCartDetails().subscribe({
-       next:()=>{
-         alert("done")
-         localStorage.removeItem("cart")
-       }
-     })
+     this.cartService.updateCart()
+     
      this.route.navigateByUrl(this._returnUrl);
     // console.log(r.data.Id)
     }

@@ -10,29 +10,29 @@
                 <!-- <input type="hidden" formControlName="Id" ([ngModle])="user.Id" class="form-control"  [value]="user.Id"> -->
                 <div class="row mt-2">
                     <div class="col-md-3"><label   >FirstName</label ></div>
-                    <div class="col-md-9"><input type="text" formControlName="FirstName" class="form-control"  [value]="user.FirstName"></div>
+                    <div class="col-md-9"><input type="text" formControlName="FirstName" [(ngModel)]="user.FirstName" class="form-control"  value="FirstName"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label   >LastName</label ></div>
-                     <div class="col-md-9"><input type="text" formControlName="LastName" class="form-control" [value]="user.LastName" ></div>
+                     <div class="col-md-9"><input type="text" formControlName="LastName" [(ngModel)]="user.LastName" class="form-control" value="LastName" ></div>
                         
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label  >PhoneNumber</label ></div>
-                    <div class="col-md-9"><input type="text" formControlName="PhoneNumber" class="form-control" [value]="user.PhoneNumber" ></div>
+                    <div class="col-md-9"><input type="text" formControlName="PhoneNumber" [(ngModel)]="user.PhoneNumber" class="form-control" value="PhoneNumber" ></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label  >Address</label ></div>
-                        <div class="col-md-9"><input type="text" formControlName="Address" class="form-control"  [value]="user.Address"></div>
+                        <div class="col-md-9"><input type="text" formControlName="Address" [(ngModel)]="user.Address" class="form-control"  value="Address"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label   >Email</label ></div>
-                    <div class="col-md-9"><input type="text" formControlName="Email" class="form-control"  [value]="user.Email"></div>
+                    <div class="col-md-9"><input type="text" formControlName="Email" [(ngModel)]="user.Email" class="form-control"  value="Email"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label >oldPassword</label ></div>
                     <div class="col-md-9">
-                        <input type="password" class="form-control" formControlName="oldPassword"  value="Password"></div>
+                        <input type="password" class="form-control" formControlName="oldPassword" [(ngModel)]="user.Password" value="Password"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3"><label >NewPassword</label ></div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="mt-5 text-right">
-                    <button class="btn btn-primary profile-button" type="button" (click)="update()">Save Profile</button>
+                    <button class="btn btn-primary " type="button" (click)="update()">Save Profile</button>
                 </div>
 
                 

@@ -56,29 +56,20 @@ export class HeaderComponent implements OnInit, OnChanges {
    ngOnChanges()
    {
     
-  //       try{
-  //         debugger
-  //       //var _result = localStorage.getItem("Result");
-  //       this.ResultObject =  localStorage.getItem("Result");
-  //       console.log("============================================");
-  //       console.log(this.ResultObject);
-  //       this.firstName = this.ResultObject.FirstName;
-  //       //this.firstName =  _result == null ? "" : _result.FirstName;
-  //   }
-  //   catch (Error){
-  //     console.log(Error);
-  //  }
-   
-  }
-
-  ngAfterViewChecked() {
-    this.userServ.getIsLogged().subscribe({
-      next: (logStatus: boolean) => {
-        this.isUsrLogged = logStatus
-        this.updateCount()
-      }
-    });
-  }
+   }
+   ngAfterViewChecked()	
+{
+  this.userServ.getIsLogged().subscribe({
+    next: (logStatus:boolean)=>{
+      this.isUsrLogged=logStatus
+      if(logStatus)
+          this.firstName="Welcome "+JSON.parse(localStorage.getItem("Result")||"{}").FirstName
+      else
+      this.firstName="My Account"
+      this.updateCount()
+    }
+  });
+}
   ngOnInit(): void {
 
 

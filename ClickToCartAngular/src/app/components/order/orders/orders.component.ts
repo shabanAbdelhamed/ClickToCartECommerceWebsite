@@ -7,6 +7,7 @@ import { IShipping } from '../../../Models/ishipping';
 import { IPayment } from '../../../Models/Ipayment';
 import { ShippingApiService } from '../../../Services/shipping-api.service';
 import { PaymentApiService } from '../../../Services/payment-api.service';
+import { IOrderStatus } from 'src/app/Models/iorder-status';
 
 @Component({
   selector: 'app-orders',
@@ -18,6 +19,7 @@ export class OrdersComponent implements OnInit,OnChanges {
  userID:string=localStorage.getItem("Id")||"1"
  shippings:IShipping[]=[]
  payments:IPayment[]=[]
+ orderStatus:IOrderStatus={} as IOrderStatus
   private subscriptions: Subscription[]=[]
   constructor(
     private orderService:OrdersApiService,
@@ -25,13 +27,30 @@ export class OrdersComponent implements OnInit,OnChanges {
     private router:Router,
     private shippingService:ShippingApiService,
     private PaymentService:PaymentApiService,
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit(): void {
     
       this.subscriptions.push(this.orderService.getOrdersByUserID(this.userID).subscribe({
         next:(orders:IOrder[])=>{
           this.orders=orders
+          console.log(this.orders)
+          this.orders.forEach(element => {
+            this.orderStatus={
+              ID:0,
+              Status:{
+                ID:1,
+                Name:"Pending"
+              },
+              Order:element,
+              StatusDate:new Date(Date.now())
+            }
+            this.orderService.getOrdersStatusByID(element.ID).subscribe((next)=>{
+              element.OrderStatuss=next==null?this.orderStatus:next
+            })
+          });
         },
         error:(err)=>{
           console.log(err);

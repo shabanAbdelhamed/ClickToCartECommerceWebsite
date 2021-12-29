@@ -105,6 +105,7 @@ private initConfig(): void {
                   console.log('onApprove - transaction was approved, but not authorized', data, actions);
                   this.IsPaiedPayPal=true;
                   this.placeOrderbool=true
+                  this.OrderView.PaymentId=2
                   console.log("this is after payment is done")
                   actions.order.get().then((details:any) => {
                       console.log('onApprove - you can get full order details inside onApprove: ', details);

@@ -78,13 +78,13 @@ update()
   this.ProfileUpdate={
     Id:localStorage.getItem("Id")||"",
     UserName:this.user.UserName,
-    FirstName:this.user.FirstName,
-    LastName:this.user.LastName,
-    Email:this.user.Email,
+    FirstName:this.UpdateForm.controls["FirstName"].value,
+    LastName:this.UpdateForm.controls["LastName"].value,
+    Email:this.UpdateForm.controls["Email"].value,
     oldPassword:this.UpdateForm.controls["oldPassword"].value,
     NewPassword:this.UpdateForm.controls["NewPassword"].value,
-    PhoneNumber:this.user.PhoneNumber,
-    Address:this.user.Address
+    PhoneNumber:this.UpdateForm.controls["PhoneNumber"].value,
+    Address:this.UpdateForm.controls["Address"].value
   }
   console.log(this.ProfileUpdate)
   this.userServ.Update(this.ProfileUpdate).subscribe(

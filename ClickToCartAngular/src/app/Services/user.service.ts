@@ -96,7 +96,7 @@ export class UserService {
         "Authorization": `Bearer ${localStorage.getItem("Token")}`
       })
     }
-    return this.http.post<any>(`${environment.APIUrl}/User/updateProfile`, upProfile, httpOptions)
+    return this.http.post<any>(`${environment.APIUrl}/User/UpdateProfile`, upProfile, httpOptions)
   }
 
 

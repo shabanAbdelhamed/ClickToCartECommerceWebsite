@@ -27,7 +27,7 @@
             @Html.TextBox("End Date",((Shipping)ViewData["Shipping"]).Information,new { @class="form-control"})
             @Html.Hidden("ID", ((Shipping)ViewData["Shipping"]).ID)
 
-            <input type="submit" class="btn btn-primary mt-2" value="Update" /><br /><br />
+            <input type="submit" class="btn btn-primary mt-2" value="Update" />
             @Html.ActionLink("Cancel", "All", "Shipping", null, new { @class = "btn btn-danger mt-1" })
 
         }

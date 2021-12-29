@@ -104,7 +104,7 @@
               <div class="col-lg-4 col-md-6 col-sm-6 pb-1"  *ngFor=" let item of prdsub |search:filteredOptions | slice:(page - 1) * pageSize : (page -1) * pageSize + pageSize ">
                   <div class="product-item bg-light mb-4">
                       <div class="product-img position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="https://localhost:44394/images/{{item.ImgCoverURl}}" alt="">
+                          <img class="img-fluid w-100" src="http://65.108.84.27:99/images/{{item.ImgCoverURl}}" alt="">
                           <div class="product-action">
                               <a class="btn btn-outline-dark btn-square" (click)="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
                               <a class="btn btn-outline-dark btn-square" [routerLink]="['/product',item.ID]"><i class="fa fa-search"></i></a>

@@ -9,7 +9,7 @@
                         <th>Shipping Method</th>
                         <th>Payment Type</th>
                         <th>Details</th>
-                        <!-- <th>Status</th> -->
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
@@ -27,11 +27,11 @@
                             </button>
                         </div>
                        </td>
-                       <!-- <td  [hidden]="!item.OrderStatus ">  <div class="input-group-btn">
-                       <span class="badge bg-success">Deliverd
+                       <td>  <div class="input-group-btn">
+                       <span class="badge badge-info">{{item.OrderStatuss.Status.Name}}
                        </span>
                      </div>
-                     </td> -->
+                     </td>
                         <!-- <td [hidden]="item.OrderStatus"> 
                      <div class="input-group-btn">
                        <span class="badge bg-danger rounded-pill text-light" >Pending</span>

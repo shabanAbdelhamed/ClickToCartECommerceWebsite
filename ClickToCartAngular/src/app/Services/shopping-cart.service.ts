@@ -96,14 +96,6 @@ export class ShoppingCartService {
   {
     this.getShoppingCart1()
     this.getShoppingCart()
-  
-  //  for(let i of )
-  //  {
-  //   console.log(++c)
-  //   await this.addProductFromCart(i,i.Product)
-  //     localStorage.removeItem("cart")
-  //  }
-      
   }
 addItemsFromCart()
 {
@@ -192,7 +184,6 @@ addItemsFromCart()
     })
     }
     else if(localStorage.getItem("cart") !== null){
-     
     let t=localStorage.getItem("cart")
     let s:ShoppingCart=JSON.parse(t||"{}")
     this.setShoppingCart1(s)
@@ -255,13 +246,12 @@ addItemsFromCart()
     console.log(this.shoppingCart1$.value)
     const shoppingCart = { ...this.shoppingCart$.value };
     const shoppingCart1 = { ...this.shoppingCart1$.value };
-    
     shoppingCart1.CartDetailsItems = shoppingCart1.CartDetailsItems.map((item) => {
-    if(item.ProductID==cartInfo1.ProductID)
+    if(item.ProductID === cartInfo1.ProductID)
         {
            console.log(item.ProductID)
           item.Quantity+=cartInfo1.Quantity
-          item.Price=item.Quantity*Productr.Price
+          item.Price+=item.Price
      //     cartInfo=item
           index=1
         }
@@ -270,10 +260,10 @@ addItemsFromCart()
     shoppingCart.CartDetailsItems = shoppingCart.CartDetailsItems.map((item) => {
       //console.log(item.Product)
      // item.quantity = item.id === updateItem.id ? +updateQuantity : item.quantity;
-    if(item.ProductID == cartInfo1.ProductID)
+    if(item.ProductID === cartInfo1.ProductID)
         { 
           item.Quantity+=cartInfo1.Quantity
-          item.Price=item.Quantity*Productr.Price
+          item.Price+=cartInfo1.Price
           //cartInfo=item
           index=1
         }
@@ -288,8 +278,14 @@ addItemsFromCart()
     this.setShoppingCart(shoppingCart);
     console.log(shoppingCart1)
    // this.setShoppingCart1(shoppingCart1);
+  //  alert(JSON.stringify(shoppingCart1)+"  from addfromCart")
     this.setShoppingCart1(shoppingCart1)
     console.log(shoppingCart)
+    this.postCartDetails().subscribe({
+      next:()=>{
+        // alert("Post Done")
+      }
+    })
  // return  this.httpClient.post<ShoppingCart>(`${environment.APIUrl}/Cart/AddToCart`,shoppingCart,httpOptions)
    // console.log(this.shoppingCart$)
   }

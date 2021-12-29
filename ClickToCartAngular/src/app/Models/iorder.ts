@@ -1,3 +1,5 @@
+import { IOrderStatus } from "./iorder-status";
+
 export interface IOrder {
     ID: number
  OrderStatus: boolean
@@ -5,4 +7,5 @@ export interface IOrder {
  shippingID: number
  TotalPrice: number
  UserID: number
+ OrderStatuss:IOrderStatus;
  }
