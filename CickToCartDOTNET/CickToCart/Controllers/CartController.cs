@@ -22,12 +22,13 @@ namespace CickToCart.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
+        [HttpGet]
         public async Task<List<Cart>> Get()
         {
             var List = await cartrepo.GetAllAsync();
             return List.ToList();
         }
+        [HttpPost]
         public async Task<IEnumerable<Cart>> Post(Cart cart)
         {
             await cartrepo.AddAsync(cart);

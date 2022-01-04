@@ -25,7 +25,7 @@ namespace ClickToCartWebApi.Controllers
             _mapper = mapper;
         }
 
-      
+      [HttpGet]
         public async Task<IEnumerable<ShippingViewModels>> GetAll()
         {
             var list = _mapper.Map<IEnumerable<ShippingViewModels>>(await _unitOfWork.ShippingRepo.GetAllAsync());

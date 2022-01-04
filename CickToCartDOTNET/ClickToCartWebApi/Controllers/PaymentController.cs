@@ -23,7 +23,7 @@ namespace ClickToCartWebApi.Controllers
             _mapper = mapper;
         }
 
-
+        [HttpGet]
         public async Task<IEnumerable<PaymentViewModel>> GetAll()
         {
             var list = await _unitOfWork.PaymentRepo.GetAllAsync();
