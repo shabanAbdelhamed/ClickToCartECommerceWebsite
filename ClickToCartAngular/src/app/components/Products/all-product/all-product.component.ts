@@ -89,28 +89,31 @@ selctsubcat!:number;
     
   }
   ngOnInit(): void {
+    
     this.ApiServes.getAll().subscribe((products)=>{
       this.prdList=products;
       this.sparePrdList=this.prdList;
+      this.ApiServes.getAllcat().subscribe({
+        next:(cat)=>{
+          this.catlist=cat;
+          this.subServ.getsub().subscribe({
+            next:(cat)=>{
+              
+              this.subCat=cat;
+              this.sparesubCat=this.subCat;
+            }
+          });
+          //console.log(this.catlist);
+        }
+      });
     });
-    this.ApiServes.getAllcat().subscribe({
-      next:(cat)=>{
-        this.catlist=cat;
-        
-        //console.log(this.catlist);
-      }
-    });       
+          
     // this.ApiServes.getAll().subscribe({
     //   next:(prd)=>{
     //     this.prdList=prd
     //   }
     // }); 
-    this.subServ.getsub().subscribe({
-      next:(cat)=>{
-        this.subCat=cat;
-        this.sparesubCat=this.subCat;
-      }
-    }); 
+   
     this.ApiServes.getrate().subscribe({
       next:(rate)=>{
         this.prodRate=rate

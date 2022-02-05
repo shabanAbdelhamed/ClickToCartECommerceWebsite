@@ -36,7 +36,7 @@
             <div class="bg-light p-4 mb-30">
                 <form>
                     <div *ngFor="let sub of subCat" class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" [(ngModel)]="SelectedCategory" [value]="sub.ID"
+                        <input type="checkbox" class="custom-control-input"  [value]="sub.ID"
                         (click)="checkCheckBoxvalue($event,sub.ID)" id="{{ sub.Name }}">
                         <label class="custom-control-label" for="{{ sub.Name }}">{{ sub.Name }}</label>
                         <!-- <span class="badge border font-weight-normal">1000</span> -->

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function DefineNumber(num){
+            console.log(num[num.length-1])
+            if(num[num.length-1]=='0')return 'Zero';
+            if(num[num.length-1]=='5')return 'Five';
+            if(Number(num)%2==0)return 'event';
+            if(Number(num)%2!=0)return 'odd';
+            
+        }
+        console.log(DefineNumber("127"));
+    </script>
+</body>
+</html>

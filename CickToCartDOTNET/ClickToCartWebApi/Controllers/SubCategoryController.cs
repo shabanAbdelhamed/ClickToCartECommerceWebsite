@@ -26,9 +26,9 @@ namespace ClickToCartWebApi.Controllers
     }
         // GET: api/<SubCategoryController>
         [HttpGet]
-        public async Task<IEnumerable<SubCategory>> GetAll()
+        public async Task<IEnumerable<SubCategoryViewModel>> GetAll()
         {
-            var list = await _unitOfWork.SubCategoryRepo.GetAllAsync();
+            var list = mapper.Map<IEnumerable<SubCategoryViewModel>>( await _unitOfWork.SubCategoryRepo.GetAllAsync());
             return list;
         }
         [HttpGet("{id}")]
